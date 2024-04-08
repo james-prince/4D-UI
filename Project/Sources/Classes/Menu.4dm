@@ -19,19 +19,19 @@ Function addSeperator()->$MenuItem : cs.MenuItem
 	If (This._MenuItems.length=0)
 		return 
 	End if 
-	$MenuItem:=cs.MenuItem.new()
+	$MenuItem:=cs._MenuItem.new()
 	$MenuItem._IsSeperator:=True
 	This._MenuItems.push($MenuItem)
 	
 Function addVariantItem($MenuText : Text; $Variant : Variant)->$MenuItem : cs.MenuItem
-	$MenuItem:=cs.MenuItem.new($MenuText)
+	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsVariantItem:=True
 	$MenuItem._Variant:=$Variant
 	This._MenuItems.push($MenuItem)
 	
 Function addFormulaItem($MenuText : Text; $FormulaOrFormulaSet : Variant)->$MenuItem : cs.MenuItem
 	//VariantTypeCheck($FormulaOrFormulaSet; []; [4D.Function; cs.FormulaSet])
-	$MenuItem:=cs.MenuItem.new($MenuText)
+	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsFormulaItem:=True
 	$MenuItem._Formula:=$FormulaOrFormulaSet
 	This._MenuItems.push($MenuItem)
