@@ -31,9 +31,10 @@ Case of
 		var $DataChangeFormulaObject : Object
 		For each ($DataChangeFormulaObject; Form._DataChangeFormulaCollection)
 			If ($DataChangeFormulaObject.Name=$ObjectName) || ($DataChangeFormulaObject.Name+".Button"=$ObjectName)
-				SetProcessDebugInfo([$ObjectName; $DataChangeFormulaObject.Formula])
+				//TODO:Replace SetProcessDebugInfo
+				//SetProcessDebugInfo([$ObjectName; $DataChangeFormulaObject.Formula])
 				$DataChangeFormulaObject.Formula.apply()
-				SetProcessDebugInfo()
+				//SetProcessDebugInfo()
 			End if 
 		End for each 
 		
