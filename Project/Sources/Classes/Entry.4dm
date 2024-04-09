@@ -151,7 +151,7 @@ Function getInput($AcceptButtonText : Text; $CancelButtonText : Text; $AcceptBut
 			top: ($Top+This.ItemHeight+10); \
 			width: ((This.ItemWidth)*2+10); \
 			height: $Height; \
-			text: Text(":1 Go Back").translate(True; "System").parse("🔙"); \
+			text: "🔙 Go Back"; \
 			fontSize: 18; \
 			focusable: False; \
 			events: ["onClick"]; \
@@ -341,7 +341,8 @@ Function addTextEntry($DataSourceFormula : 4D.Function; $LabelText : Text; $Defa
 	
 	
 Function addDataChangeFormula($EntryObjectName : Text; $FormulaOrFormulaSet : Variant)
-	VariantTypeCheck($FormulaOrFormulaSet; []; [4D.Function; cs.System.FormulaSet])
+	//TODO: Replace VariantTypeCheck
+	//VariantTypeCheck($FormulaOrFormulaSet; []; [4D.Function; cs.System.FormulaSet])
 	This.Form._DataChangeFormulaCollection.push({\
 		Name: $EntryObjectName; \
 		Formula: $FormulaOrFormulaSet})
