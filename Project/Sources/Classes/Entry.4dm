@@ -170,8 +170,8 @@ Function getInput($AcceptButtonText : Text; $CancelButtonText : Text; $AcceptBut
 	DIALOG(This._FormObject; This.Form)
 	CLOSE WINDOW($Window)
 	This.CalledGetInput:=True
-	This._ValuesObject:=_OK ? This.Form : Null
-	return _OK
+	This._ValuesObject:=(OK=1) ? This.Form : Null
+	return (OK=1)
 	
 	EntryClassAccept  //Code not reached
 	
