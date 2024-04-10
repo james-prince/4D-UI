@@ -13,9 +13,6 @@ End for each
 var $MandatoryCollection : Collection
 $MandatoryCollection:=Form._MandatoryCollection
 
-var $Colors : cs.Color
-$Colors:=cs.Color.new()
-
 var $FirstEmptyObjectName : Text
 $FirstEmptyObjectName:=""
 
@@ -30,10 +27,9 @@ For each ($Object; $MandatoryCollection)
 	$FirstEmptyObjectName:=\
 		(($FirstEmptyObjectName="") && ($PropertyIsEmpty)) ? $Object.EntryObjectName : $FirstEmptyObjectName
 	
-	//If ($Object.LabelObjectName#Null)
-	//OBJECT SET RGB COLORS(*; $Object.LabelObjectName; $PropertyIsEmpty ? $Colors.Red : $Colors.Black)
-	//End if 
-	OBJECT SET RGB COLORS(*; $Object.EntryObjectName; Foreground color; ($PropertyIsEmpty ? $Colors.Amber : $Colors.White))
+	OBJECT SET RGB COLORS(*; $Object.EntryObjectName; Foreground color; ($PropertyIsEmpty ? 16770720 : 16777215))
+	// Amber = 16770720
+	// White = 16777215
 End for each 
 
 OBJECT SET ENABLED(*; "AcceptButton"; $FirstEmptyObjectName="")
