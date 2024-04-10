@@ -15,7 +15,7 @@ Class constructor($BasicMenuItems : Collection)
 		This.addVariantItem($MenuItemText; This._MenuItems.length+1)
 	End for each 
 	
-Function addSeperator()->$MenuItem : cs.MenuItem
+Function addSeperator()->$MenuItem : cs._MenuItem
 	If (This._MenuItems.length=0)
 		return 
 	End if 
@@ -23,13 +23,13 @@ Function addSeperator()->$MenuItem : cs.MenuItem
 	$MenuItem._IsSeperator:=True
 	This._MenuItems.push($MenuItem)
 	
-Function addVariantItem($MenuText : Text; $Variant : Variant)->$MenuItem : cs.MenuItem
+Function addVariantItem($MenuText : Text; $Variant : Variant)->$MenuItem : cs._MenuItem
 	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsVariantItem:=True
 	$MenuItem._Variant:=$Variant
 	This._MenuItems.push($MenuItem)
 	
-Function addFormulaItem($MenuText : Text; $FormulaOrFormulaSet : Variant)->$MenuItem : cs.MenuItem
+Function addFormulaItem($MenuText : Text; $FormulaOrFormulaSet : Variant)->$MenuItem : cs._MenuItem
 	//VariantTypeCheck($FormulaOrFormulaSet; []; [4D.Function; cs.FormulaSet])
 	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsFormulaItem:=True
@@ -48,7 +48,7 @@ Function show()->$FormulaResult : Variant
 	var $SelectedMenuUUID:=Dynamic pop up menu(This._MenuReference)
 	This._release()
 	
-	var $MenuItem : cs.MenuItem:=This._MenuItemCollection.query("_UUID#'' && _UUID=:1"; $SelectedMenuUUID).first()
+	var $MenuItem : cs._MenuItem:=This._MenuItemCollection.query("_UUID#'' && _UUID=:1"; $SelectedMenuUUID).first()
 	This.Cancelled:=($MenuItem=Null)
 	If (This.Cancelled)
 		return Null
@@ -67,7 +67,7 @@ Function _addMenuItems($ParentMenuReference : Text)
 	
 	var $MenuItemVariant : Variant
 	For each ($MenuItemVariant; This._MenuItems)
-		//VariantTypeCheck($MenuItem; []; [cs.Menu; cs.MenuItem])
+		//VariantTypeCheck($MenuItem; []; [cs.Menu; cs._MenuItem])
 		
 		Case of 
 			: (OB Instance of($MenuItemVariant; cs.Menu))
@@ -75,8 +75,8 @@ Function _addMenuItems($ParentMenuReference : Text)
 				$Menu._addMenuItems(This._MenuReference)
 				This._MenuItemCollection.combine($Menu._MenuItemCollection)
 				
-			: (OB Instance of($MenuItemVariant; cs.MenuItem))
-				var $MenuItem : cs.MenuItem:=$MenuItemVariant
+			: (OB Instance of($MenuItemVariant; cs._MenuItem))
+				var $MenuItem : cs._MenuItem:=$MenuItemVariant
 				$MenuItem._addMenuItem(This._MenuReference)
 				This._MenuItemCollection.push($MenuItem)
 				
