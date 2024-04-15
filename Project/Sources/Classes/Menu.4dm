@@ -23,19 +23,21 @@ Function addSeperator()->$MenuItem : cs._MenuItem
 	$MenuItem._IsSeperator:=True
 	This._MenuItems.push($MenuItem)
 	
-Function addVariantItem($MenuText : Text; $Variant : Variant; $Checked : Boolean)->$MenuItem : cs._MenuItem
+Function addVariantItem($MenuText : Text; $Variant : Variant; $Checked : Boolean; $Enabled : Boolean)->$MenuItem : cs._MenuItem
 	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsVariantItem:=True
 	$MenuItem._Variant:=$Variant
-	$MenuItem.Checked:=$Checked
+	$MenuItem.Checked:=Count parameters>=3 ? $Checked : False
+	$MenuItem.Enabled:=Count parameters>=4 ? $Enabled : True
 	This._MenuItems.push($MenuItem)
 	
-Function addFormulaItem($MenuText : Text; $FormulaOrFormulaSet : Variant; $Checked : Boolean)->$MenuItem : cs._MenuItem
+Function addFormulaItem($MenuText : Text; $FormulaOrFormulaSet : Variant; $Checked : Boolean; $Enabled : Boolean)->$MenuItem : cs._MenuItem
 	//VariantTypeCheck($FormulaOrFormulaSet; []; [4D.Function; cs.FormulaSet])
 	$MenuItem:=cs._MenuItem.new($MenuText)
 	$MenuItem._IsFormulaItem:=True
 	$MenuItem._Formula:=$FormulaOrFormulaSet
-	$MenuItem.Checked:=$Checked
+	$MenuItem.Checked:=Count parameters>=3 ? $Checked : False
+	$MenuItem.Enabled:=Count parameters>=4 ? $Enabled : True
 	This._MenuItems.push($MenuItem)
 	
 Function addSubMenu($SubMenuText : Text)->$Menu : cs.Menu
