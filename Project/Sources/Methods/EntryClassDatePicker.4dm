@@ -1,7 +1,7 @@
 //%attributes = {"lang":"en"}
 var $Date:=Form[OBJECT Get name(Object current)+"Formula"]()
 
-var $NewDate:=DatePicker($Date)
+var $NewDate:=UI.selectDate($Date)
 
 If ($NewDate#!00-00-00!)
 	var $Formula : 4D.Function
