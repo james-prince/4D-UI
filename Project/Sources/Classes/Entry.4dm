@@ -39,7 +39,7 @@ Class constructor($WindowTitle : Text; $TextDescription : Text; $AllMandatory : 
 	
 	
 	This.Bottom:=0
-	This.ItemWidth:=Count parameters>=4 ? $ItemWidth : 350
+	This.ItemWidth:=$ItemWidth#0 ? $ItemWidth : 350
 	This.ItemHeight:=25
 	
 	If ($TextDescription#"")
@@ -571,31 +571,31 @@ Function addFileEntry($DataSourceFormula : 4D.Function; $LabelText : Text; $Mand
 	/////////////////////////////////////////////////////////////////////////////////
 	
 	
-Function __addInput($EntryInput : cs.EntryInput)
-	This.__EntryInputCollection.push($EntryInput)
+	//Function __addInput($EntryInput : cs.EntryInput)
+	//This.__EntryInputCollection.push($EntryInput)
 	
-Function __newGetInput($AcceptButtonText : Text; $CancelButtonText : Text)->$Accepted : Boolean
-	This.Form.InitializationFormulaCollection:=[]
-	This.Form.ValidationFormulasObject:={}
+	//Function __newGetInput($AcceptButtonText : Text; $CancelButtonText : Text)->$Accepted : Boolean
+	//This.Form.InitializationFormulaCollection:=[]
+	//This.Form.ValidationFormulasObject:={}
 	
-	var $EntryInput : cs.EntryInput
-	For each ($EntryInput; This.__EntryInputCollection)
-		This.Form.InitializationFormulaCollection.push($EntryInput.InitializationFormula)
-		
-		If (($EntryInput.LabelText || "")#"")
-			
-		End if 
-		
-		This.Form.ValidationFormulasObject[$EntryInput.FormObjectName]:=$EntryInput.ValidationFormula
-		
-		This._addFormObject($EntryInput.FormObjectName; $EntryInput.FormObject; 0; 0; 0; 0)
-		This._Objects[$EntryInput.FormObjectName]:=$EntryInput.FormObject
-		
-		
-	End for each 
+	//var $EntryInput : cs.EntryInput
+	//For each ($EntryInput; This.__EntryInputCollection)
+	//This.Form.InitializationFormulaCollection.push($EntryInput.InitializationFormula)
 	
-	return This.getInput($AcceptButtonText; $CancelButtonText)
-	EntryClassLoad
+	//If (($EntryInput.LabelText || "")#"")
+	
+	//End if 
+	
+	//This.Form.ValidationFormulasObject[$EntryInput.FormObjectName]:=$EntryInput.ValidationFormula
+	
+	//This._addFormObject($EntryInput.FormObjectName; $EntryInput.FormObject; 0; 0; 0; 0)
+	//This._Objects[$EntryInput.FormObjectName]:=$EntryInput.FormObject
+	
+	
+	//End for each 
+	
+	//return This.getInput($AcceptButtonText; $CancelButtonText)
+	//EntryClassLoad
 	
 	
 Function _addFormObject($FormObjectName : Text; $FormObject : Object; $Top : Integer; $Left : Integer; $Height : Integer; $Width : Integer)
