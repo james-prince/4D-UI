@@ -1,6 +1,7 @@
 //%attributes = {"lang":"en"}
-var $StaffEntity : cs.StaffEntity
-$StaffEntity:=ds.Staff.getUsingKeyfob(True; Form["_KeyFob"])
+//TODO: Replace ds["Staff"] with non specific function
+var $StaffEntity : 4D.Entity
+$StaffEntity:=ds["Staff"].getUsingKeyfob(True; Form["_KeyFob"])
 
 If ($StaffEntity#Null)
 	Formula from string(Form._KeyfobFormula.source+":=$1").call(Form; $StaffEntity)
