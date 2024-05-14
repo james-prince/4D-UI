@@ -39,7 +39,7 @@ Class constructor($WindowTitle : Text; $TextDescription : Text; $AllMandatory : 
 	
 	
 	This.Bottom:=0
-	This.ItemWidth:=Count parameters>=4 ? $ItemWidth : 350
+	This.ItemWidth:=$ItemWidth#0 ? $ItemWidth : 350
 	This.ItemHeight:=25
 	
 	If ($TextDescription#"")
