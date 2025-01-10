@@ -18,13 +18,16 @@ For each ($Entity; Formula from string(Replace string($FormObject[$EntityDropDow
 	
 	//SetProcessDebugInfo(New collection($Entity.getKey(); $Entity.getDataClass().getInfo(); $DisplayFormula.source))
 	
-	var $ErrorHandler:=cs.ErrorHandler.new(True)
-	var $DisplayFormulaValue : Text:=$DisplayFormula.call($Entity)
-	$ErrorHandler.stop()
+	Try  //TODO: add catch clause
+		var $DisplayFormulaValue : Text:=$DisplayFormula.call($Entity)
+		$ValuesCollection.push($DisplayFormulaValue)
+	Catch
+		$ValuesCollection.push("ERROR: PK-"+String($Entity.getKey()))
+	End try
 	
 	//SetProcessDebugInfo()
 	
-	$ValuesCollection.push($ErrorHandler.ErrorOccured ? "ERROR: PK-"+String($Entity.getKey()) : $DisplayFormulaValue)
+	
 	If ($CurrentEntity#Null) && ($Entity.getKey()=$CurrentEntity.getKey())
 		$SelectedItem:=$index
 	End if 
