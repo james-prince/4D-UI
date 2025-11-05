@@ -25,7 +25,7 @@ Function selectDate($DefaultDate : Date; $CurrentObject : Boolean) : Date
 		$MouseY:=[$top; $bottom].average()
 	Else 
 		var $mouseButton : Integer
-		GET MOUSE($MouseX; $MouseY; $mouseButton)
+		MOUSE POSITION($MouseX; $MouseY; $mouseButton)
 	End if 
 	
 	return DatePicker Display Dialog($MouseX; $MouseY; $DefaultDate)
